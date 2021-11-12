@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EventRepository extends CrudRepository<EventData, Integer> {
     EventData findById(int id);
+    @Override
+    Iterable<EventData> findAll();
 }
