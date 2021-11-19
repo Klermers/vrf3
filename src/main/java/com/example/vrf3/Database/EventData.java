@@ -17,6 +17,8 @@ public class EventData {
     private Date eventdate;
     @Column
     private String description;
+    @Column
+    private String world;
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "event_roles",
             joinColumns = @JoinColumn(name = "event_id"),
