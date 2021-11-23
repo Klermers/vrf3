@@ -14,8 +14,8 @@ public class RoleData {
 
     private String role;
 
-    @ManyToMany(mappedBy = "roles")
-    private Set<EventData> events;
+    @OneToMany
+    private Set<Event_Roles_UsersData>  eventusers;
 
     public RoleData(){
 
@@ -36,9 +36,5 @@ public class RoleData {
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    public Set<EventData> getEvents() {
-        return events;
     }
 }

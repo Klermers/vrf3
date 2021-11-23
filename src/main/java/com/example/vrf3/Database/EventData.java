@@ -1,6 +1,8 @@
 package com.example.vrf3.Database;
 
 
+import org.aspectj.weaver.World;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -17,23 +19,18 @@ public class EventData {
     private Date eventdate;
     @Column
     private String description;
-    @Column
-    private String world;
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "event_roles",
-            joinColumns = @JoinColumn(name = "event_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<RoleData> roles;
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "event_users",
-            joinColumns = @JoinColumn(name = "event_id"),
-            inverseJoinColumns =  @JoinColumn(name = "user_id"))
-    private Set<UserData> users;
-
+    @ManyToOne
+    @JoinColumn(name = "world_id")
+    private WorldData worldData;
+    @ManyToOne
+    @JoinColumn(name = "categorie_id")
+    private CategoriesData categoriesData;
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ImagesData> imagesData;
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Event_Roles_UsersData>  usersrole;
 
     public EventData(){
-
     }
 
 
@@ -43,8 +40,8 @@ public class EventData {
         this.description =description;
 
     }
-
-    public void addUser(UserData user)
+/*
+    public void addUserwithRole(UserData user)
     {
         this.users.add(user);
         user.getEvents().add(this);
@@ -68,6 +65,8 @@ public class EventData {
         role.getEvents().remove(this);
     }
 
+ */
+
     public Integer getId() {
         return id;
     }
@@ -75,19 +74,6 @@ public class EventData {
     public String getTitel() {
         return titel;
     }
-
-    public void setTitel(String titel) {
-        this.titel = titel;
-    }
-
-    public Set<RoleData> getRoles() {
-        return roles;
-    }
-
-    public Set<UserData> getUsers() {
-        return users;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -102,5 +88,25 @@ public class EventData {
 
     public void setEventdate(Date eventdate) {
         this.eventdate = eventdate;
+    }
+
+    public WorldData getWorldData() {
+        return worldData;
+    }
+
+    public void setWorldData(WorldData worldData) {
+        this.worldData = worldData;
+    }
+
+    public CategoriesData getCategoriesData() {
+        return categoriesData;
+    }
+
+    public void setCategoriesData(CategoriesData categoriesData) {
+        this.categoriesData = categoriesData;
+    }
+
+    public Set<Event_Roles_UsersData> getUsersrole() {
+        return usersrole;
     }
 }

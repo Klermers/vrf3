@@ -5,42 +5,40 @@ import java.util.Set;
 
 public class EventDto {
 
-    int id;
+    private int id;
 
-    String titel;
+    private String titel;
 
-    String description;
+    private Date date;
 
-    Date date;
+    private String description;
 
-    Set<UserDto> users;
+    private WorldDto worldDto;
 
-    Set<RoleDto> roles;
+    private CategorieDto categorieDto;
+
+    private Set<ImageDto> imageDtos;
+
+    private Set<Event_Roles_UsersDto> event_roles_usersDtos;
 
     public EventDto(){
 
     }
-    public EventDto(int Id, String Titel, String Description, Date date, Set<UserDto> Users, Set<RoleDto> Roles){
+    public EventDto(int Id, String Titel, Date Date, String Description, WorldDto WorldDto, CategorieDto CategorieDto, Set<ImageDto> ImageDto, Set<Event_Roles_UsersDto> Event_Roles_UsersDto){
         this.id = Id;
         this.titel = Titel;
         this.description= Description;
-        this.date = date;
-        this.users = users;
-        this.roles = roles;
-
+        this.date = Date;
+        this.worldDto = WorldDto;
+        this.categorieDto = CategorieDto;
+        this.imageDtos = ImageDto;
+        this.event_roles_usersDtos = Event_Roles_UsersDto;
     }
 
-    public EventDto(String Titel, String Description, Date date){
+    public EventDto(String Titel, String Description,Set<ImageDto> ImageDto){
         this.titel = Titel;
         this.description= Description;
-        this.date = date;
-    }
-    public EventDto(int Id, String Titel, String Description, Date date, Set<UserDto> Users){
-        this.id = Id;
-        this.titel = Titel;
-        this.description= Description;
-        this.date = date;
-        this.users = users;
+        this.imageDtos = ImageDto;
     }
 
     public EventDto(int Id, String Titel, Date date){
@@ -85,21 +83,35 @@ public class EventDto {
         this.date = Date;
     }
 
-    public Set<UserDto> getUsers() {
-        return users;
+    public WorldDto getWorldDto() {
+        return worldDto;
     }
 
-    public void setUsers(Set<UserDto> Users) {
-        this.users = Users;
+    public void setWorldDto(WorldDto worldDto) {
+        this.worldDto = worldDto;
     }
 
-    public Set<RoleDto> getRoles() {
-        return roles;
+    public CategorieDto getCategorieDto() {
+        return categorieDto;
     }
 
-    public void setRoles(Set<RoleDto> Roles) {
-        this.roles = Roles;
+    public void setCategorieDto(CategorieDto categorieDto) {
+        this.categorieDto = categorieDto;
     }
 
+    public Set<ImageDto> getImageDtos() {
+        return imageDtos;
+    }
 
+    public void setImageDtos(Set<ImageDto> imageDtos) {
+        this.imageDtos = imageDtos;
+    }
+
+    public Set<Event_Roles_UsersDto> getEvent_roles_usersDtos() {
+        return event_roles_usersDtos;
+    }
+
+    public void setEvent_roles_usersDtos(Set<Event_Roles_UsersDto> event_roles_usersDtos) {
+        this.event_roles_usersDtos = event_roles_usersDtos;
+    }
 }

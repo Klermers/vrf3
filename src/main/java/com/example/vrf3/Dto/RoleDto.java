@@ -4,11 +4,11 @@ import java.util.Set;
 
 public class RoleDto {
 
-    int id;
+    private int id;
 
-    String role;
+    private String role;
 
-    Set<EventDto> events;
+    private Set<Event_Roles_UsersDto> event_roles_usersDtos;
 
     public RoleDto()
     {
@@ -21,11 +21,11 @@ public class RoleDto {
         this.role = Role;
     }
 
-    public RoleDto(int Id, String Role, Set<EventDto> events)
+    public RoleDto(int Id, String Role, Set<Event_Roles_UsersDto> Event_roles_usersDtos)
     {
         this.id = Id;
         this.role = Role;
-        this.events = events;
+        this.event_roles_usersDtos = Event_roles_usersDtos;
     }
 
     public Integer getId() {
@@ -44,12 +44,11 @@ public class RoleDto {
         this.role = Role;
     }
 
-    public Set<EventDto> getEvents() {
-        return events;
+    public Set<Event_Roles_UsersDto> getEvent_roles_usersDtos() {
+        return event_roles_usersDtos;
     }
 
-    public void setEvents(Set<EventDto>  Events) {
-        this.events = Events;
+    public void setEvent_roles_usersDtos(Set<Event_Roles_UsersDto> event_roles_usersDtos) {
+        this.event_roles_usersDtos = event_roles_usersDtos;
     }
-
 }

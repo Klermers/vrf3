@@ -20,8 +20,8 @@ public class UserData {
     @Column
     private Date joindate;
 
-    @ManyToMany(mappedBy = "users")
-    private Set<EventData> events;
+    @OneToMany
+    private Set<Event_Roles_UsersData>  eventroles;
 
     public UserData(){
 
@@ -79,10 +79,6 @@ public class UserData {
 
     public void setJoindate(Date joindate) {
         this.joindate = joindate;
-    }
-
-    public Set<EventData> getEvents() {
-        return events;
     }
 }
 

@@ -63,7 +63,7 @@ public class RoleLogic implements IRoleLogic {
         return new RoleDto(
                 roledata.getId(),
                 roledata.getRole(),
-                getEvents(roledata.getEvents())
+
 
         );
     }

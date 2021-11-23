@@ -8,7 +8,6 @@ public class Event_Roles_UsersData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne
-    @JoinColumn(name = "event_id")
     private EventData eventData;
     @ManyToOne
     @JoinColumn(name = "role_id")
@@ -16,4 +15,8 @@ public class Event_Roles_UsersData {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserData userData;
+
+    public void Event_Roles_UsersData() {
+
+    }
 }
