@@ -1,9 +1,15 @@
 package com.example.vrf3.Database;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Set;
 
+
+@Getter
+@Setter
 @Entity
 @Table( name = "role")
 public class RoleData {
@@ -14,27 +20,10 @@ public class RoleData {
 
     private String role;
 
-    @OneToMany
+    @OneToMany(mappedBy = "roledata")
     private Set<Event_Roles_UsersData>  eventusers;
 
     public RoleData(){
 
-    }
-
-    public RoleData(String Role){
-        this.role = role;
-
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 }

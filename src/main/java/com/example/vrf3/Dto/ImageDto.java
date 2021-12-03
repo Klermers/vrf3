@@ -1,37 +1,17 @@
 package com.example.vrf3.Dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.istack.NotNull;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class ImageDto {
-    private int id;
+    @JsonProperty("id")
+    private Integer id;
 
+    @NotNull
+    @JsonProperty("imagadto")
     private String image;
-
-    private EventDto eventDto;
-
-    public void ImageDto(){
-
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public EventDto getEventDto() {
-        return eventDto;
-    }
-
-    public void setEventDto(EventDto eventDto) {
-        this.eventDto = eventDto;
-    }
 }

@@ -1,8 +1,13 @@
 package com.example.vrf3.Database;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Set;
 
+@Getter
+@Setter
 @Entity
 @Table( name = "categorie")
 public class CategoriesData {
@@ -11,26 +16,10 @@ public class CategoriesData {
     private Integer id;
     @Column
     private String categorie;
-    @OneToMany(mappedBy = "event")
+    @OneToMany(mappedBy = "categoriesData")
     private Set<EventData> eventData;
 
     public void CategorieData (){
 
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getCategorie() {
-        return categorie;
-    }
-
-    public void setCategorie(String categorie) {
-        this.categorie = categorie;
-    }
-
-    public Set<EventData> getEventData() {
-        return eventData;
     }
 }

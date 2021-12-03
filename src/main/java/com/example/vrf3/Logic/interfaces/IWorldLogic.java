@@ -4,9 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.Set;
 
 public interface IWorldLogic {
-    ResponseEntity<List<WorldDto>> getAll();
-    ResponseEntity<HttpStatus> delete(int id);
-    ResponseEntity<HttpStatus> CreateWorld(WorldDto worldDto);
+    ResponseEntity<Set<WorldDto>> getAll();
 }

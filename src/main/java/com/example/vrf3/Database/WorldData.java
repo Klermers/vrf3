@@ -1,8 +1,14 @@
 package com.example.vrf3.Database;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Set;
 
+
+@Getter
+@Setter
 @Entity
 @Table( name = "world")
 public class WorldData {
@@ -11,7 +17,7 @@ public class WorldData {
     private Integer id;
     @Column
     private String world;
-    @OneToMany(mappedBy = "event")
+    @OneToMany(mappedBy = "worldData")
     private Set<EventData> eventData;
 
     public void Worddata(){

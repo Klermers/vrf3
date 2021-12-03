@@ -28,9 +28,4 @@ public class UserController {
         return userLogic.save(user);
     }
 
-    @DeleteMapping(path = "/deleteuser")
-    public @ResponseBody
-    ResponseEntity deleteaccount(Authentication authentication,int id) {
-        return userLogic.delete(authentication.getName(),id);
-    }
 }

@@ -7,5 +7,4 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 public interface IIMageLogic {
     ResponseEntity<HttpStatus> save(ImageDto imageDto);
-    ResponseEntity<HttpStatus> delete(int id);
 }

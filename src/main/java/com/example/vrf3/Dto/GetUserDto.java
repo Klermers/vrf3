@@ -5,22 +5,14 @@ import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Set;
-
 @Getter
 @Setter
-public class UserDto {
-
+public class GetUserDto {
     @JsonProperty("id")
     private Integer id;
 
-    @NotNull
     @JsonProperty("username")
     private String username;
-
-    @NotNull
-    @JsonProperty("password")
-    private String password;
 
     @NotNull
     @JsonProperty("displayname")

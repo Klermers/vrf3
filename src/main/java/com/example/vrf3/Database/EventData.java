@@ -1,12 +1,17 @@
 package com.example.vrf3.Database;
 
 
+import lombok.Getter;
+import lombok.Setter;
 import org.aspectj.weaver.World;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
+
+@Getter
+@Setter
 @Entity
 @Table( name = "event")
 public class EventData {
@@ -27,18 +32,10 @@ public class EventData {
     private CategoriesData categoriesData;
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ImagesData> imagesData;
-    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "eventData", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Event_Roles_UsersData>  usersrole;
 
     public EventData(){
-    }
-
-
-    public EventData(String Titel, Date Date,String description){
-        this.titel = Titel;
-        this.eventdate = Date;
-        this.description =description;
-
     }
 /*
     public void addUserwithRole(UserData user)
@@ -67,46 +64,4 @@ public class EventData {
 
  */
 
-    public Integer getId() {
-        return id;
-    }
-
-    public String getTitel() {
-        return titel;
-    }
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getEventdate() {
-        return eventdate;
-    }
-
-    public void setEventdate(Date eventdate) {
-        this.eventdate = eventdate;
-    }
-
-    public WorldData getWorldData() {
-        return worldData;
-    }
-
-    public void setWorldData(WorldData worldData) {
-        this.worldData = worldData;
-    }
-
-    public CategoriesData getCategoriesData() {
-        return categoriesData;
-    }
-
-    public void setCategoriesData(CategoriesData categoriesData) {
-        this.categoriesData = categoriesData;
-    }
-
-    public Set<Event_Roles_UsersData> getUsersrole() {
-        return usersrole;
-    }
 }

@@ -1,9 +1,15 @@
 package com.example.vrf3.Database;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+
+@Getter
+@Setter
 @Entity
-@Table( name = "images")
+@Table( name = "image")
 public class ImagesData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,7 +17,10 @@ public class ImagesData {
     @Column
     private String image;
     @ManyToOne
-    private EventData eventData;
+    @JoinColumn(name = "event_id")
+    private EventData event;
+    @OneToOne(mappedBy = "imagesData")
+    private UserData userData;
 
     public ImagesData(){
 

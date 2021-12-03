@@ -1,117 +1,45 @@
 package com.example.vrf3.Dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.security.core.userdetails.User;
+
 import java.util.Date;
 import java.util.Set;
 
+@Getter
+@Setter
 public class EventDto {
 
+    @JsonProperty("id")
     private int id;
 
+    @JsonProperty("titel")
     private String titel;
 
+    @JsonProperty("date")
     private Date date;
 
+    @JsonProperty("description")
     private String description;
 
+    @JsonProperty("users")
+    private UserDto userDto;
+
+    @JsonProperty("users")
+    private Date eventdate;
+
+    @JsonProperty("worlds")
     private WorldDto worldDto;
 
+    @JsonProperty("categories")
     private CategorieDto categorieDto;
 
+    @JsonProperty("images")
     private Set<ImageDto> imageDtos;
 
+    @JsonProperty("userroles")
     private Set<Event_Roles_UsersDto> event_roles_usersDtos;
 
-    public EventDto(){
-
-    }
-    public EventDto(int Id, String Titel, Date Date, String Description, WorldDto WorldDto, CategorieDto CategorieDto, Set<ImageDto> ImageDto, Set<Event_Roles_UsersDto> Event_Roles_UsersDto){
-        this.id = Id;
-        this.titel = Titel;
-        this.description= Description;
-        this.date = Date;
-        this.worldDto = WorldDto;
-        this.categorieDto = CategorieDto;
-        this.imageDtos = ImageDto;
-        this.event_roles_usersDtos = Event_Roles_UsersDto;
-    }
-
-    public EventDto(String Titel, String Description,Set<ImageDto> ImageDto){
-        this.titel = Titel;
-        this.description= Description;
-        this.imageDtos = ImageDto;
-    }
-
-    public EventDto(int Id, String Titel, Date date){
-        this.id = Id;
-        this.titel = Titel;
-        this.date = date;
-    }
-
-    public EventDto(int Id){
-        this.id = Id;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer Id) {
-        this.id = Id;
-    }
-
-    public String getTitel() {
-        return titel;
-    }
-
-    public void setTitel(Integer Titel) {
-        this.titel = titel;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String Description) {
-        this.description = Description;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setId(Date Date) {
-        this.date = Date;
-    }
-
-    public WorldDto getWorldDto() {
-        return worldDto;
-    }
-
-    public void setWorldDto(WorldDto worldDto) {
-        this.worldDto = worldDto;
-    }
-
-    public CategorieDto getCategorieDto() {
-        return categorieDto;
-    }
-
-    public void setCategorieDto(CategorieDto categorieDto) {
-        this.categorieDto = categorieDto;
-    }
-
-    public Set<ImageDto> getImageDtos() {
-        return imageDtos;
-    }
-
-    public void setImageDtos(Set<ImageDto> imageDtos) {
-        this.imageDtos = imageDtos;
-    }
-
-    public Set<Event_Roles_UsersDto> getEvent_roles_usersDtos() {
-        return event_roles_usersDtos;
-    }
-
-    public void setEvent_roles_usersDtos(Set<Event_Roles_UsersDto> event_roles_usersDtos) {
-        this.event_roles_usersDtos = event_roles_usersDtos;
-    }
 }

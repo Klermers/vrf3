@@ -7,6 +7,7 @@ import com.example.vrf3.Dto.EventDto;
 import com.example.vrf3.Dto.RoleDto;
 import com.example.vrf3.Dto.UserDto;
 import com.example.vrf3.Logic.interfaces.IEventLogic;
+import com.example.vrf3.Mapstruct.MapStructMapperImpl;
 import com.example.vrf3.Repositoy.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,20 +25,27 @@ public class EventLogic implements IEventLogic {
     @Autowired
     private EventRepository eventRepository;
 
+    @Autowired
+    private MapStructMapperImpl mapStructMapper;
+
     @Override
-    public ResponseEntity<List<EventDto>> getAll()
+    public ResponseEntity<Set<EventDto>> getAll()
     {
-        List<EventDto> events = new ArrayList<>();
-        eventRepository.findAll().forEach(role -> {
-            events.add(populateDto(role));
-        });
+        Set<EventDto> events;
+        try {
+            events = mapStructMapper.EventDataToEventDtos(eventRepository.findAll());
+        } catch (NullPointerException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return new ResponseEntity<>(events,HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<EventDto> create(EventDto eventDto) {
         try {
-            eventRepository.save(populateEntity(eventDto));
+            eventRepository.save(mapStructMapper.EventDtoToEventData(eventDto));
         } catch (NullPointerException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
@@ -50,81 +58,12 @@ public class EventLogic implements IEventLogic {
     public ResponseEntity<EventDto> getbyId(int id) {
         EventDto eventDto;
         try {
-            eventDto = populateDto(eventRepository.findById(id));
+            eventDto = mapStructMapper.EventDataToEventDto(eventRepository.findById(id));
         } catch (NullPointerException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<>(eventDto, HttpStatus.OK);
-    }
-
-
-    @Override
-    public ResponseEntity<HttpStatus> delete(int id) {
-        try {
-            eventRepository.deleteById(id);
-        } catch (NullPointerException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    private EventDto populateDto(EventData eventdata) {
-        return new EventDto(
-                eventdata.getId(),
-                eventdata.getTitel(),
-                eventdata.getDescription(),
-                eventdata.getEventdate(),
-                getUsers(eventdata.getUsers()),
-                getRoles(eventdata.getRoles())
-
-        );
-    }
-
-    private EventData populateEntity(EventDto dto) {
-        return new EventData(
-                dto.getTitel(),
-                dto.getDate(),
-                dto.getDescription()
-        );
-    }
-
-    private Set<RoleDto> getRoles(Set<RoleData> roledatas) {
-        Set<RoleDto> roledtos = new HashSet<>();
-        for (RoleData roledata : roledatas) {
-            RoleDto roledto = new RoleDto(
-                    roledata.getId(),
-                    roledata.getRole(),
-                    getEvents(roledata.getEvents())
-            );
-
-        }
-        return roledtos;
-    }
-
-    private Set<UserDto> getUsers(Set<UserData> userdatas) {
-        Set<UserDto> userdtos = new HashSet<>();
-        for (UserData userdata : userdatas) {
-            UserDto userdto = new UserDto(
-                    userdata.getId(),
-                    userdata.getDisplayname()
-            );
-
-        }
-        return userdtos;
-    }
-
-    private Set<EventDto> getEvents(Set<EventData> eventdatas) {
-        Set<EventDto> eventdtos = new HashSet<>();
-        for (EventData eventdata : eventdatas) {
-            EventDto eventDto = new EventDto(
-                    eventdata.getId()
-            );
-
-        }
-        return eventdtos;
     }
 }
