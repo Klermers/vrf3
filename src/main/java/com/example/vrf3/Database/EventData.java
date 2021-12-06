@@ -37,8 +37,9 @@ public class EventData {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "event_id")
     private Set<ImagesData> imagesData;
-    @OneToMany(mappedBy = "eventData", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Event_Roles_UsersData>  usersrole;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private UserData creator;
 
     public EventData(){
     }

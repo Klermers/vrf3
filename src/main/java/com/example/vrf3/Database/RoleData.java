@@ -22,9 +22,6 @@ public class RoleData {
     private Integer id;
 
     private String role;
-    @Getter(AccessLevel.NONE)
-    @OneToMany(mappedBy = "roledata")
-    private Set<Event_Roles_UsersData>  eventusers;
 
     public RoleData(){
 

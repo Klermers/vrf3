@@ -25,7 +25,7 @@ public class EventDto {
     private String description;
 
     @JsonProperty("users")
-    private UserDto userDto;
+    private UserDto creator;
 
     @JsonProperty("worlds")
     private WorldDto worldData;
