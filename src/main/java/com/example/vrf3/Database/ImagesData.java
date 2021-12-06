@@ -21,10 +21,8 @@ public class ImagesData {
     @Column
     private String image;
     @JsonManagedReference
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name= "event_id")
+    @ManyToOne
     private EventData event;
-    @Getter(AccessLevel.NONE)
     @OneToOne(mappedBy = "imagesData")
     private UserData userData;
 

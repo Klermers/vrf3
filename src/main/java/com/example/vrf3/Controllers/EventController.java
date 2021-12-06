@@ -23,7 +23,7 @@ public class EventController {
     @PostMapping(path = "/createevent")
     public @ResponseBody
     ResponseEntity CreateEvent(@RequestBody EventDto eventDto) {
-        return eventLogic.getbyId(eventDto.getId());
+        return eventLogic.create(eventDto);
     }
 
     @GetMapping(path = "/getevents")
