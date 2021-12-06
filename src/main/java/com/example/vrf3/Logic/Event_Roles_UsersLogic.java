@@ -20,13 +20,4 @@ public class Event_Roles_UsersLogic implements IEvent_Roles_UsersLogic {
     public ResponseEntity<Set<Event_Roles_UsersDto>> GetallbyEventId(int id) {
         return null;
     }
-
-    private Event_Roles_UsersDto populateDTo()
-    {
-        return null;
-    }
-
-    private Event_Roles_UsersData populateEntity(){
-        return null;
-    }
 }

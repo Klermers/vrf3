@@ -1,11 +1,6 @@
 package com.example.vrf3.Logic;
 
-import com.example.vrf3.Database.EventData;
-import com.example.vrf3.Database.RoleData;
-import com.example.vrf3.Database.UserData;
 import com.example.vrf3.Dto.EventDto;
-import com.example.vrf3.Dto.RoleDto;
-import com.example.vrf3.Dto.UserDto;
 import com.example.vrf3.Logic.interfaces.IEventLogic;
 import com.example.vrf3.Mapstruct.MapStructMapperImpl;
 import com.example.vrf3.Repositoy.EventRepository;
@@ -14,9 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Service

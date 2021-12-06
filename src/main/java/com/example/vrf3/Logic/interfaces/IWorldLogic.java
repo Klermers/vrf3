@@ -8,4 +8,6 @@ import java.util.Set;
 
 public interface IWorldLogic {
     ResponseEntity<Set<WorldDto>> getAll();
+
+    ResponseEntity<HttpStatus> save(WorldDto worldDto);
 }

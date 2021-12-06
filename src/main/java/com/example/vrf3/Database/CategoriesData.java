@@ -1,5 +1,10 @@
 package com.example.vrf3.Database;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,8 +21,6 @@ public class CategoriesData {
     private Integer id;
     @Column
     private String categorie;
-    @OneToMany(mappedBy = "categoriesData")
-    private Set<EventData> eventData;
 
     public void CategorieData (){
 

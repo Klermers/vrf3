@@ -12,6 +12,6 @@ public class ImageDto {
     private Integer id;
 
     @NotNull
-    @JsonProperty("imagadto")
+    @JsonProperty("image")
     private String image;
 }

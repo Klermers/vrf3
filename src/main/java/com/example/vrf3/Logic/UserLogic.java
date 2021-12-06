@@ -1,18 +1,14 @@
 package com.example.vrf3.Logic;
 
-import com.example.vrf3.Database.EventData;
 import com.example.vrf3.Database.UserData;
-import com.example.vrf3.Dto.EventDto;
 import com.example.vrf3.Dto.GetUserDto;
 import com.example.vrf3.Dto.UserDto;
-import com.example.vrf3.Dto.WorldDto;
 import com.example.vrf3.Logic.interfaces.IUserLogic;
 import com.example.vrf3.Mapstruct.MapStructMapperImpl;
 import com.example.vrf3.Repositoy.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

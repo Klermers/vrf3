@@ -5,6 +5,7 @@ import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.Set;
 
 @Getter
@@ -26,7 +27,10 @@ public class UserDto {
     @JsonProperty("displayname")
     private String displayname;
 
-    @NotNull
     @JsonProperty("image")
-    private ImageDto imageDto;
+    private ImageDto imagesData;
+
+    @NotNull
+    @JsonProperty("joindate")
+    private Date joindate;
 }

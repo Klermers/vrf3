@@ -1,6 +1,9 @@
 package com.example.vrf3.Database;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.aspectj.weaver.World;
@@ -21,7 +24,7 @@ public class EventData {
     @Column
     private String titel;
     @Column
-    private Date eventdate;
+    private Date date;
     @Column
     private String description;
     @ManyToOne
@@ -30,7 +33,8 @@ public class EventData {
     @ManyToOne
     @JoinColumn(name = "categorie_id")
     private CategoriesData categoriesData;
-    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
+    @OneToMany(mappedBy = "event",fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ImagesData> imagesData;
     @OneToMany(mappedBy = "eventData", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Event_Roles_UsersData>  usersrole;

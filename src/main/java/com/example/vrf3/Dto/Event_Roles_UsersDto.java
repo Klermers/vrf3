@@ -14,12 +14,12 @@ public class Event_Roles_UsersDto {
     private int id;
 
     @JsonProperty("events")
-    private EventDto eventDto;
+    private EventDto eventData;
 
     @JsonProperty("roles")
-    private RoleDto roleDto;
+    private RoleDto roledata;
 
     @JsonProperty("users")
-    private GetUserDto userDto;
+    private GetUserDto userData;
 
 }

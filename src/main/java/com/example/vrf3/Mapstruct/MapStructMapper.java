@@ -3,13 +3,11 @@ package com.example.vrf3.Mapstruct;
 import com.example.vrf3.Database.*;
 import com.example.vrf3.Dto.*;
 import org.mapstruct.Mapper;
-import org.mapstruct.ReportingPolicy;
-import org.mapstruct.factory.Mappers;
 
 import java.util.Set;
 
+@Mapper
 public interface MapStructMapper {
-    MapStructMapper INSTANCE = Mappers.getMapper(MapStructMapper.class);
 
     WorldData WorlddtoToWorldData(WorldDto worldDto);
 

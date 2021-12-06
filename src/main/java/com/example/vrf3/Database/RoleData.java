@@ -1,6 +1,9 @@
 package com.example.vrf3.Database;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +22,7 @@ public class RoleData {
     private Integer id;
 
     private String role;
-
+    @Getter(AccessLevel.NONE)
     @OneToMany(mappedBy = "roledata")
     private Set<Event_Roles_UsersData>  eventusers;
 

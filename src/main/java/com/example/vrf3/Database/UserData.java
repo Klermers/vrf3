@@ -2,6 +2,9 @@ package com.example.vrf3.Database;
 
 
 import com.example.vrf3.Dto.ImageDto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,10 +29,9 @@ public class UserData {
     private String password;
     @Column
     private Date joindate;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "image_id")
     private ImagesData imagesData;
-
     @OneToMany(mappedBy = "userData")
     private Set<Event_Roles_UsersData> eventroles;
 

@@ -27,19 +27,16 @@ public class EventDto {
     @JsonProperty("users")
     private UserDto userDto;
 
-    @JsonProperty("users")
-    private Date eventdate;
-
     @JsonProperty("worlds")
-    private WorldDto worldDto;
+    private WorldDto worldData;
 
     @JsonProperty("categories")
-    private CategorieDto categorieDto;
+    private CategorieDto categoriesData;
 
     @JsonProperty("images")
-    private Set<ImageDto> imageDtos;
+    private Set<ImageDto> imagesData;
 
     @JsonProperty("userroles")
-    private Set<Event_Roles_UsersDto> event_roles_usersDtos;
+    private Set<Event_Roles_UsersDto> usersrole;
 
 }

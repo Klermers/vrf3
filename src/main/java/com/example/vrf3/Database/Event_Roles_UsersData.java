@@ -1,4 +1,8 @@
 package com.example.vrf3.Database;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,14 +16,11 @@ public class Event_Roles_UsersData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne
-    @JoinColumn(name = "event_id")
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private EventData eventData;
-    @ManyToOne
-    @JoinColumn(name = "role_id")
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private RoleData roledata;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private UserData userData;
 
     public void Event_Roles_UsersData() {

@@ -1,13 +1,11 @@
 package com.example.vrf3.Controllers;
 
 import com.example.vrf3.Dto.CategorieDto;
+import com.example.vrf3.Dto.WorldDto;
 import com.example.vrf3.Logic.interfaces.ICategorieLogic;
 import com.example.vrf3.Logic.interfaces.IWorldLogic;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
@@ -25,5 +23,11 @@ public class CategoryController {
     public @ResponseBody
     ResponseEntity Categories() {
         return categorieLogic.GetallCatergories();
+    }
+
+    @PostMapping(path = "/savecategorie")
+    public @ResponseBody
+    ResponseEntity SaveCategorie(@RequestBody CategorieDto categorieDto) {
+        return categorieLogic.save(categorieDto);
     }
 }

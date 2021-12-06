@@ -1,9 +1,6 @@
 package com.example.vrf3.Logic;
 
-import com.example.vrf3.Database.CategoriesData;
-import com.example.vrf3.Database.EventData;
 import com.example.vrf3.Dto.CategorieDto;
-import com.example.vrf3.Dto.EventDto;
 import com.example.vrf3.Logic.interfaces.ICategorieLogic;
 import com.example.vrf3.Mapstruct.MapStructMapperImpl;
 import com.example.vrf3.Repositoy.CategorieRepository;
