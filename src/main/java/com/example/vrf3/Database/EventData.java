@@ -35,6 +35,7 @@ public class EventData {
     private CategoriesData categoriesData;
     @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "event_id")
     private Set<ImagesData> imagesData;
     @OneToMany(mappedBy = "eventData", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Event_Roles_UsersData>  usersrole;
