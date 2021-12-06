@@ -1,15 +1,14 @@
 package com.example.vrf3.Logic;
 
-import com.example.vrf3.Database.EventData;
 import com.example.vrf3.Database.UserData;
-import com.example.vrf3.Dto.EventDto;
+import com.example.vrf3.Dto.GetUserDto;
 import com.example.vrf3.Dto.UserDto;
 import com.example.vrf3.Logic.interfaces.IUserLogic;
+import com.example.vrf3.Mapstruct.MapStructMapperImpl;
 import com.example.vrf3.Repositoy.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -26,6 +25,8 @@ public class UserLogic implements IUserLogic, UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private MapStructMapperImpl mapStructMapper;
 
     private final BCryptPasswordEncoder encoder;
 
@@ -34,10 +35,10 @@ public class UserLogic implements IUserLogic, UserDetailsService {
     }
 
     @Override
-    public ResponseEntity<UserDto> findbUsername(String username) {
-        UserDto user;
+    public ResponseEntity<GetUserDto> findbUsername(String username) {
+        GetUserDto user;
         try {
-            user = populateDto(userRepository.findByUsername(username));
+            user = mapStructMapper.UserDataToGetUserDto(userRepository.findByUsername(username));
         } catch (NullPointerException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
@@ -47,25 +48,23 @@ public class UserLogic implements IUserLogic, UserDetailsService {
     }
 
     @Override
-    public ResponseEntity<HttpStatus> save(UserDto user) {
-        user.setPassword(encoder.encode(user.getPassword()));
+    public ResponseEntity<Set<GetUserDto>> GetAllUsers() {
+        Set<GetUserDto> getUserDtos = new HashSet<>();
         try {
-            userRepository.save(populateEntity(user));
+            getUserDtos = mapStructMapper.UserDataToGetUserDtos(userRepository.findAll());
         } catch (NullPointerException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(getUserDtos,HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<HttpStatus> delete(String username, int id) {
+    public ResponseEntity<HttpStatus> save(UserDto user) {
+        user.setPassword(encoder.encode(user.getPassword()));
         try {
-            if(findbUsername(username).getBody().getId() == id)
-            {
-                userRepository.deleteById(id);
-            }
+            userRepository.save(mapStructMapper.UserDtoToUserData(user));
         } catch (NullPointerException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
@@ -81,34 +80,5 @@ public class UserLogic implements IUserLogic, UserDetailsService {
             throw new UsernameNotFoundException(username);
         }
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), emptyList());
-    }
-
-    private UserDto populateDto(UserData userdata) {
-        return new UserDto(
-                userdata.getId(),
-                getEvents(userdata.getEvents()),
-                userdata.getDisplayname()
-        );
-    }
-
-    private UserData populateEntity(UserDto dto) {
-        return new UserData(
-                dto.getUsername(),
-                dto.getPassword(),
-                dto.getDisplayname()
-        );
-    }
-
-    private Set<EventDto> getEvents(Set<EventData> eventdatas) {
-        Set<EventDto> eventdtos = new HashSet<>();
-        for (EventData eventdata : eventdatas) {
-            EventDto eventDto = new EventDto(
-                    eventdata.getId(),
-                    eventdata.getTitel(),
-                    eventdata.getEventdate()
-            );
-
-        }
-        return eventdtos;
     }
 }

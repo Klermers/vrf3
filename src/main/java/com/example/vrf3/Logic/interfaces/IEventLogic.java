@@ -6,15 +6,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.Set;
 
 public interface IEventLogic {
 
-    ResponseEntity<List<EventDto>> getAll();
+    ResponseEntity<Set<EventDto>> getAll();
 
     ResponseEntity<EventDto> create(EventDto eventDto);
 
     ResponseEntity<EventDto> getbyId(int id);
-
-    ResponseEntity<HttpStatus> delete(int id);
 
 }

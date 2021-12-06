@@ -8,12 +8,12 @@ import java.util.Set;
 
 @Getter
 @Setter
-public class RoleDto {
+public class WorldDto {
 
     @JsonProperty("id")
     private int id;
 
-    @JsonProperty("role")
-    private String role;
+    @JsonProperty("world")
+    private String world;
 
 }

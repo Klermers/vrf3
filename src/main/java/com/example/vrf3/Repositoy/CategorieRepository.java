@@ -1,5 +1,6 @@
 package com.example.vrf3.Repositoy;
 
+import com.example.vrf3.Database.CategoriesData;
 import com.example.vrf3.Database.EventData;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -7,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Set;
 
 @Repository
-public interface EventRepository extends CrudRepository<EventData, Integer> {
-    EventData findById(int id);
-    Set<EventData> findAll();
+public interface CategorieRepository extends CrudRepository<CategoriesData, Integer> {
+    Set<CategoriesData> findAll();
 }

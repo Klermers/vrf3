@@ -8,12 +8,18 @@ import java.util.Set;
 
 @Getter
 @Setter
-public class RoleDto {
+public class Event_Roles_UsersDto {
 
     @JsonProperty("id")
     private int id;
 
-    @JsonProperty("role")
-    private String role;
+    @JsonProperty("events")
+    private EventDto eventData;
+
+    @JsonProperty("roles")
+    private RoleDto roledata;
+
+    @JsonProperty("users")
+    private GetUserDto userData;
 
 }

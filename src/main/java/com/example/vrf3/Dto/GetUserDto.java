@@ -6,31 +6,25 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.Set;
 
 @Getter
 @Setter
-public class UserDto {
-
+public class GetUserDto {
     @JsonProperty("id")
     private Integer id;
 
-    @NotNull
     @JsonProperty("username")
     private String username;
-
-    @NotNull
-    @JsonProperty("password")
-    private String password;
 
     @NotNull
     @JsonProperty("displayname")
     private String displayname;
 
-    @JsonProperty("image")
-    private ImageDto imagesData;
-
     @NotNull
     @JsonProperty("joindate")
     private Date joindate;
+
+    @NotNull
+    @JsonProperty("image")
+    private ImageDto imagesData;
 }

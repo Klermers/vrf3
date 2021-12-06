@@ -1,105 +1,42 @@
 package com.example.vrf3.Dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.security.core.userdetails.User;
+
 import java.util.Date;
 import java.util.Set;
 
+@Getter
+@Setter
 public class EventDto {
 
-    int id;
+    @JsonProperty("id")
+    private int id;
 
-    String titel;
+    @JsonProperty("titel")
+    private String titel;
 
-    String description;
+    @JsonProperty("date")
+    private Date date;
 
-    Date date;
+    @JsonProperty("description")
+    private String description;
 
-    Set<UserDto> users;
+    @JsonProperty("users")
+    private UserDto userDto;
 
-    Set<RoleDto> roles;
+    @JsonProperty("worlds")
+    private WorldDto worldData;
 
-    public EventDto(){
+    @JsonProperty("categories")
+    private CategorieDto categoriesData;
 
-    }
-    public EventDto(int Id, String Titel, String Description, Date date, Set<UserDto> Users, Set<RoleDto> Roles){
-        this.id = Id;
-        this.titel = Titel;
-        this.description= Description;
-        this.date = date;
-        this.users = users;
-        this.roles = roles;
+    @JsonProperty("images")
+    private Set<ImageDto> imagesData;
 
-    }
-
-    public EventDto(String Titel, String Description, Date date){
-        this.titel = Titel;
-        this.description= Description;
-        this.date = date;
-    }
-    public EventDto(int Id, String Titel, String Description, Date date, Set<UserDto> Users){
-        this.id = Id;
-        this.titel = Titel;
-        this.description= Description;
-        this.date = date;
-        this.users = users;
-    }
-
-    public EventDto(int Id, String Titel, Date date){
-        this.id = Id;
-        this.titel = Titel;
-        this.date = date;
-    }
-
-    public EventDto(int Id){
-        this.id = Id;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer Id) {
-        this.id = Id;
-    }
-
-    public String getTitel() {
-        return titel;
-    }
-
-    public void setTitel(Integer Titel) {
-        this.titel = titel;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String Description) {
-        this.description = Description;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setId(Date Date) {
-        this.date = Date;
-    }
-
-    public Set<UserDto> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<UserDto> Users) {
-        this.users = Users;
-    }
-
-    public Set<RoleDto> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<RoleDto> Roles) {
-        this.roles = Roles;
-    }
-
+    @JsonProperty("userroles")
+    private Set<Event_Roles_UsersDto> usersrole;
 
 }

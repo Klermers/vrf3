@@ -1,19 +1,17 @@
 package com.example.vrf3.Dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Set;
-
 @Getter
 @Setter
-public class RoleDto {
-
+public class ImageDto {
     @JsonProperty("id")
-    private int id;
+    private Integer id;
 
-    @JsonProperty("role")
-    private String role;
-
+    @NotNull
+    @JsonProperty("image")
+    private String image;
 }
