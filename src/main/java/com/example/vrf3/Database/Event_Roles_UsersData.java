@@ -17,7 +17,7 @@ public class Event_Roles_UsersData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name="event_id")
+        @JoinColumn(name="event_id")
     private EventData eventData;
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name="role_id")

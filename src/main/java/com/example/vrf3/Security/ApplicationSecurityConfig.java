@@ -33,7 +33,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.DELETE).permitAll()
                 .antMatchers(HttpMethod.PUT).permitAll()
-                .antMatchers(HttpMethod.GET,"/category/categories","/world/worlds").permitAll()
+                .antMatchers(HttpMethod.GET,"/category/categories","/world/worlds","/event/getevents","/event/getevent").permitAll()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
                 .anyRequest().authenticated()
                 .and()
