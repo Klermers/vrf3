@@ -17,7 +17,9 @@ jobs:
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
-       - sonarcloud/scan
+      - sonarcloud/scan:
+          cache_version: 0 
+          sonar_token_variable_name: sonar 
       # Checkout the code as the first step.
       - checkout
       # Use mvn clean and package as the standard maven build phase
