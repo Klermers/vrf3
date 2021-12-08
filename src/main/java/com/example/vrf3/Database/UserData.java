@@ -32,9 +32,6 @@ public class UserData {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "image_id")
     private ImagesData imagesData;
-    @OneToMany(mappedBy = "userData")
-    private Set<Event_Roles_UsersData> eventroles;
-
     public UserData() {
 
     }

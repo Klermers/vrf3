@@ -34,10 +34,12 @@ public class EventData {
     @JoinColumn(name = "categorie_id")
     private CategoriesData categoriesData;
     @JsonBackReference
-    @OneToMany(mappedBy = "event",fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "event_id")
     private Set<ImagesData> imagesData;
-    @OneToMany(mappedBy = "eventData", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Event_Roles_UsersData>  usersrole;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private UserData creator;
 
     public EventData(){
     }

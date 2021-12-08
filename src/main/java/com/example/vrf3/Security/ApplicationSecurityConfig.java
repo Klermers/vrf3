@@ -33,7 +33,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.DELETE).permitAll()
                 .antMatchers(HttpMethod.PUT).permitAll()
-                .antMatchers(HttpMethod.GET,"/category/categories","/world/worlds").permitAll()
+                .antMatchers(HttpMethod.GET,"/category/categories","/world/worlds","/event/getevents","/event/getevent").permitAll()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -45,11 +45,13 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/v2/api-docs/**");
+        web.ignoring().antMatchers("/v3/api-docs/**");
         web.ignoring().antMatchers("/swagger.json");
-        web.ignoring().antMatchers("/swagger-ui.html");
+        web.ignoring().antMatchers("/swagger-ui/**");
         web.ignoring().antMatchers("/swagger-resources/**");
         web.ignoring().antMatchers("/webjars/**");
+        web.ignoring().antMatchers("/configuration/ui");
+        web.ignoring().antMatchers("/configuration/security");
         web.ignoring().antMatchers("/text");
         web.ignoring().antMatchers("/binary");
         web.ignoring().antMatchers("/text/**");

@@ -20,13 +20,6 @@ public class ImagesData {
     private Integer id;
     @Column
     private String image;
-    @JsonManagedReference
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name= "event_id")
-    private EventData event;
-    @Getter(AccessLevel.NONE)
-    @OneToOne(mappedBy = "imagesData")
-    private UserData userData;
 
     public ImagesData(){
 
