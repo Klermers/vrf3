@@ -20,7 +20,7 @@ jobs:
       - sonarcloud/scan 
       # Checkout the code as the first step.
       - checkout
-      - - run:
+      - run:
             name: Analyze on SonarCloud
             command: mvn verify sonar:sonar -Dsonar.projectKey=Klermers_vrf3
       # Use mvn clean and package as the standard maven build phase
