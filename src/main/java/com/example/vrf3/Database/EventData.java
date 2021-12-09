@@ -33,10 +33,9 @@ public class EventData {
     @ManyToOne
     @JoinColumn(name = "categorie_id")
     private CategoriesData categoriesData;
-    @JsonBackReference
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "event_id")
-    private Set<ImagesData> imagesData;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id")
+    private ImagesData imagesData;
     @OneToOne
     @JoinColumn(name = "user_id")
     private UserData creator;

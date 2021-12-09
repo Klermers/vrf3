@@ -32,9 +32,10 @@ public class EventController {
         return eventLogic.getAll();
     }
 
-    @GetMapping(path = "/getevent")
+    @GetMapping(path = "/getevent/{id}")
     public @ResponseBody
-    ResponseEntity GetEvents(@RequestBody EventDto eventDto) {
+    ResponseEntity GetEvents(@PathVariable("id") int Id,EventDto eventDto) {
+        eventDto.setId(Id);
         return eventLogic.getbyId(eventDto.getId());
     }
 

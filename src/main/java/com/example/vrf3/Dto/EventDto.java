@@ -34,7 +34,7 @@ public class EventDto {
     private CategorieDto categoriesData;
 
     @JsonProperty("images")
-    private Set<ImageDto> imagesData;
+    private ImageDto imagesData;
 
     @JsonProperty("userroles")
     private Set<Event_Roles_UsersDto> usersrole;
