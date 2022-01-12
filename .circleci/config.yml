@@ -61,3 +61,13 @@ workflows:
     jobs:
       - build:
           context: vrf3
+      - build2:
+          filters:
+            branches:
+              only: master
+      - publish-latest:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
