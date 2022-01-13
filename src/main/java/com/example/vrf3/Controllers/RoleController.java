@@ -24,7 +24,7 @@ public class RoleController {
         return roleLogic.getAll();
     }
 
-    @PostMapping(path = "/savero    le")
+    @PostMapping(path = "/saverole")
     public @ResponseBody
     ResponseEntity SaveWorld(@RequestBody RoleDto roleDto) {
         return roleLogic.save(roleDto);
