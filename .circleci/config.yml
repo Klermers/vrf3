@@ -26,7 +26,7 @@ jobs:
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
   build2:
     environment:
-      IMAGE_NAME: jonathancardoso/building-on-ci
+      IMAGE_NAME: klerm/building-on-ci
     docker:
       - image: circleci/buildpack-deps:stretch
     steps:
