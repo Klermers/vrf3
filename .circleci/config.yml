@@ -20,21 +20,46 @@ jobs:
       # Checkout the code as the first step.
       - checkout
       - run:
-          name: Analyze on SonarCloud
-          command: mvn verify sonar:sonar -Dsonar.projectKey=Klermers_vrf3
-      # Use mvn clean and package as the standard maven build phase
-      - run:
-          name: Build
-          command: mvn -B -DskipTests clean package
-      # Then run your tests!
-      - run:
           name: Test
           command: mvn test
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+  build2:
+    environment:
+      IMAGE_NAME: jonathancardoso/building-on-ci
+    docker:
+      - image: circleci/buildpack-deps:stretch
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build Docker image
+          command: docker build -t $IMAGE_NAME:latest --file ./Dockefile .
+  publish-latest:
+    environment:
+      IMAGE_NAME: building-on-ci
+    docker:
+      - image: circleci/buildpack-deps:stretch
+    steps:
+      - setup_remote_docker
+      - run:
+          name: Publish Docker Image to Docker Hub
+          command: |
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            docker push $IMAGE_NAME:latest
 workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build:
           context: vrf3
+      - build2:
+          filters:
+            branches:
+              only: master
+      - publish-latest:
+          requires:
+            - build2
+          filters:
+            branches:
+              only: master
